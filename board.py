@@ -1,18 +1,29 @@
-from chesspiece import piece_types, ChessPiece
+from chesspiece import ChessPiece
 
-class Tile:
-    def __init__(self,):
-        self.piece = None
-
-    def set_piece(self, piece):
-        self.piece = piece
 
 class ChessBoard:
     def __init__(self):
-        print("Hello world")
-        self.board = [[" " for i in range(8)] for i in range(8)]
+        self.board = [[None for i in range(8)] for i in range(8)]
+        self.initialize_board()
 
     def initialize_board(self):
-        for x in range(len(self.board[0])-1):
-            for y in range(len(self.board[1])-1):
-                self.board[x][y] = Tile()
+        for i in range(8):
+            # Make sure to change this when the time comes
+            self.board[1][i] = ChessPiece('p', 'w')
+            self.board[6][i] = ChessPiece('p', 'b')
+
+    def print_board(self):
+        for x in range(len(self.board[0])):
+            for y in range(len(self.board[x])):
+                tile_as_text = "[    ]"
+                if self.board[x][y] is not None:
+                    piece = self.board[x][y]
+                    tile_as_text = "[ " + piece.team_color.value + piece.piece_type + " ]"
+                print(tile_as_text, " ", end="")
+            print()
+
+    def move_piece(self, init_x, init_y, goal_x, goal_y):
+        if self.board[init_x][init_y] is not None:
+            piece = self.board[init_x][init_y]
+            self.board[goal_x][goal_y] = piece
+            self.board[init_x][init_y] = None
