@@ -6,4 +6,8 @@ if __name__ == '__main__':
     chessboard = ChessBoard()
     chessboard.print_board()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    running = True
+    white_turn = True
+    while running:
+        print("Player ", "White" if white_turn else "Black", " Please pick a piece")
+        piece = input()
