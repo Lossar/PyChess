@@ -15,9 +15,9 @@ if __name__ == '__main__':
     move_and_update(1, 1, 1, 1)
     move_and_update(2, 1, 4, 1)
 
-
     running = True
     white_turn = True
+
     while running:
         print("Player ", "White" if white_turn else "Black", " Please pick a piece")
         piece = input()
