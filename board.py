@@ -1,4 +1,4 @@
-from chesspiece import ChessPiece
+from chesspiece import Pawn
 
 num_to_char = {
     1: "a",
@@ -19,8 +19,8 @@ class ChessBoard:
     def initialize_board(self):
         for i in range(8):
             # Make sure to change this when the time comes
-            self.board[1][i] = ChessPiece('p', 'w')
-            self.board[6][i] = ChessPiece('p', 'b')
+            self.board[1][i] = Pawn('p', 'w')
+            self.board[6][i] = Pawn('p', 'b')
 
     def print_board(self):
         for x in range(len(self.board[0])):
@@ -32,8 +32,31 @@ class ChessBoard:
                 print(tile_as_text, " ", end="")
             print()
 
-    def move_piece(self, init_x, init_y, goal_x, goal_y):
-        if self.board[init_x][init_y] is not None:
+    def move_is_unobstructed(self, target_x, target_y, piece):
+        if self.board[target_x][target_y] is not None:
+            return piece.team_color == self.board[target_x][target_x]
+        else:
+            return True
+
+    # Attempts to move a piece on the board. Returns true if move was a success, otherwise returns false
+    def attempt_move(self, init_x, init_y, target_x, target_y):
+        valid = False
+        if init_x == target_x and init_y == target_y:
+            print("Piece cannot move to itself")
+            # Check that the provided coordinates contains a piece
+        elif self.board[init_x][init_y] is not None:
             piece = self.board[init_x][init_y]
-            self.board[goal_x][goal_y] = piece
-            self.board[init_x][init_y] = None
+            # Check that the move conforms to the rules of movement for the piece
+            if piece.move_is_valid(init_x, init_y, target_x, target_y) and self.move_is_unobstructed(target_x, target_y,piece):
+                print("Move was valid")
+                self.move_piece(init_x, init_y, target_x, target_y, piece)
+                valid = True
+            else:
+                print("Move was not valid with the rules of the piece")
+        return valid
+
+    # Performs the move operation
+    def move_piece(self, init_x, init_y, target_x, target_y, piece):
+        self.board[target_x][target_y] = piece
+        self.board[init_x][init_y] = None
+        print("Piece moved")
