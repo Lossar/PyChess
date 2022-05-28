@@ -10,3 +10,9 @@ class TextUi:
                         tile_as_text = "[ " + piece.team_color.value + piece.piece_type + " ]"
                     print(tile_as_text, " ", end="")
                 print()
+
+    def receive_input(self):
+
+        print("Player", "{},".format("White" if white_turn else "Black"), "please pick a piece")
+        piece = input()
+        return piece
