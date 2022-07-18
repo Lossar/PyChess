@@ -7,7 +7,7 @@ from gamemanager import GameManager
 if __name__ == '__main__':
     chessboard = ChessBoard()
     textUi = TextUi()
-    gameManager = GameManager(ui=textUi, audio=None, chessboard=chessboard)
+    gameManager = GameManager(ui=textUi, chessboard=chessboard)
     running = True
     white_turn = True
 

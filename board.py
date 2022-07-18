@@ -1,15 +1,16 @@
 from chesspiece import Pawn
 
 num_to_char = {
-    1: "a",
-    2: "b",
-    3: "c",
-    4: "d",
-    5: "e",
-    6: "f",
-    7: "g",
-    8: "h"
+    "a": 1,
+    "b": 2,
+    "c": 3,
+    "d": 4,
+    "e": 5,
+    "f": 6,
+    "g": 7,
+    "h": 8
 }
+
 
 class ChessBoard:
     def __init__(self):
@@ -31,6 +32,8 @@ class ChessBoard:
     # Attempts to move a piece on the board. Returns true if move was a success, otherwise returns false
     def attempt_move(self, init_x, init_y, target_x, target_y):
         valid = False
+        init_x, target_x = num_to_char[init_x], num_to_char[target_x]
+        init_y, target_y = int(init_y), int(target_y)
         if init_x == target_x and init_y == target_y:
             print("Piece cannot move to itself")
             # Check that the provided coordinates contains a piece

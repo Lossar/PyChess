@@ -13,10 +13,18 @@ class TextUi:
     def on_board_update(self, chessboard):
         self.print_board(chessboard)
 
-    def receive_input(self, white_turn):
+
+    def prompt_pick_piece(self, white_turn):
         print("Player", "{},".format("White" if white_turn else "Black"), "please pick a piece")
+
+
+    def prompt_pick_target(self, white_turn):
+        print("Player", "{},".format("White" if white_turn else "Black"), "please pick a target")
+
+
+    def receive_input(self):
         piece = input()
-        return piece if self.is_valid_input(piece) else None
+        return [piece[0], piece[1]] if self.is_valid_input(piece) else [None, None]
 
     def is_valid_input(self, input_string):
         return len(input_string) == 2 and input_string[1].isnumeric()
