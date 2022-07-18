@@ -22,16 +22,6 @@ class ChessBoard:
             self.board[1][i] = Pawn('p', 'w')
             self.board[6][i] = Pawn('p', 'b')
 
-#    def print_board(self):
- #       for x in range(len(self.board[0])):
-  #          for y in range(len(self.board[x])):
-   #             tile_as_text = "[    ]"
-    #            if self.board[x][y] is not None:
-     #               piece = self.board[x][y]
-      #              tile_as_text = "[ " + piece.team_color.value + piece.piece_type + " ]"
-       #         print(tile_as_text, " ", end="")
-        #    print()
-
     def move_is_unobstructed(self, target_x, target_y, piece):
         if self.board[target_x][target_y] is not None:
             return piece.team_color == self.board[target_x][target_x]
