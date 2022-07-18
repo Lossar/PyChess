@@ -12,9 +12,9 @@ class GameManager:
     def run(self):
         self.ui.on_board_update(self.chessboard_)
 
-        chosen_piece = None
-        while chosen_piece is None:
-            chosen_piece = self.ui.receive_input(self.white_turn)
+        chosen_piece_coordinates = None
+        while chosen_piece_coordinates is None:
+            chosen_piece_coordinates = self.ui.receive_input(self.white_turn)
 
         print("Move happens here")
         self.white_turn = not self.white_turn
