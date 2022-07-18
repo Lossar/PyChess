@@ -16,11 +16,8 @@ class GameManager:
         while chosen_piece is None:
             chosen_piece = self.ui.receive_input(self.white_turn)
 
-        if True:
-            print("Move happens here")
-            self.white_turn = not self.white_turn
-        else:
-            print("Move was invalid here")
+        print("Move happens here")
+        self.white_turn = not self.white_turn
 
     def move_and_update(self, init_x, init_y, target_x, target_y):
         self.chessboard_.attempt_move(init_x, init_y, target_x, target_y)
