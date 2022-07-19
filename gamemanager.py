@@ -5,12 +5,12 @@ class GameManager:
     def __init__(self, ui, chessboard):
         self.chessboard_ = chessboard
         self.ui = ui
-        self.ui.on_board_update(self.chessboard_)
 
     def run(self):
         x, y, target_y, target_x = None, None, None, None
 
         while x is None and y is None:
+            self.ui.on_board_update(self.chessboard_)
             self.ui.prompt_pick_piece(self.white_turn)
             x, y = self.ui.receive_input()
 
@@ -20,6 +20,7 @@ class GameManager:
             return
 
         while target_x is None and target_y is None:
+            self.ui.on_board_update(self.chessboard_)
             self.ui.prompt_pick_target(self.white_turn)
             target_x, target_y = self.ui.receive_input()
 
@@ -27,7 +28,6 @@ class GameManager:
             self.white_turn = not self.white_turn
         else:
             self.ui.inform_invalid_move(x, y, target_x, target_y)
-        self.ui.on_board_update(self.chessboard_)
 
     def move_and_update(self, init_x, init_y, target_x, target_y):
         self.chessboard_.attempt_move(init_x, init_y, target_x, target_y)
